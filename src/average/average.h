@@ -3,4 +3,4 @@
 
 float average(float arr[], unsigned int size);
 
-#endif
+#endif // AVERAGE_H

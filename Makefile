@@ -1,47 +1,59 @@
-# Tool defintion
+# Tool definitions
 CC ?= gcc
 CXX ?= g++
 
-#Settings
+# Settings
 SRC_DIR = ./src
-TEST_DIR = ./test
+TEST_DIR = ./tests
 BUILD_DIR = .
 NAME = app.elf
 
 # Search path for header files
 CFLAGS += -I$(SRC_DIR)/average
 
-# List of module soruce files
-
+# List module source files
 CSOURCES = $(SRC_DIR)/main.c
 CSOURCES += $(wildcard $(SRC_DIR)/average/*.c)
 
-#Complier Flags
+# Compiler flags
 CFLAGS += -Wall
 
-# Linker Flags
+# Linker flags
 LDFLAGS += 
 
-#Generate names for output files (*.o)
-
+# Generate names for output object files (*.o)
 COBJECTS = $(patsubst %.c, %.o, $(CSOURCES))
 
-#Default Rules: Build appllication
+# Default rule: build application
 .PHONY: all
 all: $(NAME)
 
-#Building components
-$(COBJECTS): %.o : %.c
+# Build components
+$(COBJECTS) : %.o : %.c
 %.o: %.c
     $(CC) $(CFLAGS) -c $< -o $@
 
 # Build the target application
 .PHONY: $(NAME)
+<<<<<<< Updated upstream
 $(NAME):$(COBJECTS)
     $(CC) $(COBJECTS) -o $(BUILD_DIR)/$ (NAME) $(LDFLAGS)
+=======
+$(NAME): $(COBJECTS)
+	$(CC) $(COBJECTS) -o $(BUILD_DIR)/$(NAME) $(LDFLAGS)
+>>>>>>> Stashed changes
 
-# Remove complied object files
+# Remove compiled object files
 .PHONY: clean
 clean:
     rm -f $(COBJECTS)
 
+# Run tests
+.PHONY: test
+test:
+	make -C $(TEST_DIR)
+	
+# Clean tests
+.PHONY: test_clean
+test_clean:
+	make -C $(TEST_DIR) clean
