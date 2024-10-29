@@ -31,22 +31,17 @@ all: $(NAME)
 # Build components
 $(COBJECTS) : %.o : %.c
 %.o: %.c
-    $(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
 # Build the target application
 .PHONY: $(NAME)
-<<<<<<< Updated upstream
-$(NAME):$(COBJECTS)
-    $(CC) $(COBJECTS) -o $(BUILD_DIR)/$ (NAME) $(LDFLAGS)
-=======
 $(NAME): $(COBJECTS)
 	$(CC) $(COBJECTS) -o $(BUILD_DIR)/$(NAME) $(LDFLAGS)
->>>>>>> Stashed changes
 
 # Remove compiled object files
 .PHONY: clean
 clean:
-    rm -f $(COBJECTS)
+	rm -f $(COBJECTS)
 
 # Run tests
 .PHONY: test

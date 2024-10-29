@@ -3,10 +3,9 @@
 
 int main()
 {
-    float Num[5] = {-1.0, 0.0,1.0,2.0,3.0}
-    float avg = average(Num,5);
+    float Num[5] = {-1.0, 0.0, 1.0, 2.0, 3.0};
+    float avg = average(Num, 5);
     printf("Average: %f \r\n", avg);
 
     return 0;
-    
 }
